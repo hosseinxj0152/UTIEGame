@@ -1,12 +1,13 @@
 def subtractLists(first_list, second_list):
-    result = first_list.copy()
-    result={int(x)-int(y) for (x,y) in zip(first_list,second_list)}
-    return result
-    # return {[*first_list]:(x-y) for (x, y) in zip(first_list, second_list)}
+    result_values = {int(x) - int(y) for (x, y) in zip(list(first_list.values()), list(second_list.values()))}
+    zip_iterator = zip(list(first_list.keys()), result_values)
+    return dict(zip_iterator)
 
 
 def multiplyLists(first_list, second_list):
-    return {x * y for (x, y) in zip(first_list, second_list)}
+    result_values = {int(x) * int(y) for (x, y) in zip(list(first_list.values()), list(second_list.values()))}
+    zip_iterator = zip(list(first_list.keys()), result_values)
+    return dict(zip_iterator)
 
 
 def main():

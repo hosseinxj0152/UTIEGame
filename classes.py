@@ -2,16 +2,18 @@ from miscellaneousFunctions import *
 
 
 class Factory:
-    def __init__(self, hp, base_cost):
+    def __init__(self, hp, base_cost, name):
         self.hp = hp
         self.base_cost = base_cost
         self.zone = None
+        self.name = name
 
 
 class Zone:
-    def __init__(self, risk, cost_ratio):
+    def __init__(self, risk, cost_ratio, name):
         self.risk = risk
         self.cost_ratio = cost_ratio
+        self.name = name
 
 
 class Player:
