@@ -11,11 +11,17 @@ def multiplyLists(first_list, second_list):
 
 
 def subtractDicts(first_dict, second_dict):
-    return dict(set(first_dict.items()) - set(second_dict.items()))
+    result = {}
+    for k, v in first_dict.items():
+        result[k] = v - second_dict.get(k, 0)
+    return result
 
 
 def multiplyDicts(first_dict, second_dict):
-    return dict(set(first_dict.items()) - set(second_dict.items()))
+    result = {}
+    for k, v in first_dict.items():
+        result[k] = v * second_dict.get(k, 0)
+    return result
 
 
 def main():

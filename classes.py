@@ -32,14 +32,17 @@ class Player:
         self.posy = posy
         self.resources = starting_resources
         self.is_working = False
-        self.factories = list()
+        self.factories = {"AirCraftFactory":0,
+                          "AntiAircraftFactory":0,
+                          "ArmamentFactory":0
+        }
         self.inventory = {"UAV": 0,
                           "Bomber": 0}
 
     def buildFactory(self, input_factory):
         self.is_working = True
-        self.factories.append(input_factory)
-        input_factory_cost = multiplyLists(input_factory.base_cost, input_factory.zone.cost_ratio)
+        self.factories[input_factory.name]+=1
+        input_factory_cost = multiplyDicts(input_factory.base_cost, input_factory.zone.cost_ratio)
         self.resources = subtractDicts(self.resources, input_factory_cost)
         self.is_working = False
 
