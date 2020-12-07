@@ -10,6 +10,14 @@ def multiplyLists(first_list, second_list):
     return dict(zip_iterator)
 
 
+def subtractDicts(first_dict, second_dict):
+    return dict(set(first_dict.items()) - set(second_dict.items()))
+
+
+def multiplyDicts(first_dict, second_dict):
+    return dict(set(first_dict.items()) - set(second_dict.items()))
+
+
 def main():
     print("Hello World!")
 

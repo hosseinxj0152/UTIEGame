@@ -35,8 +35,11 @@ def main():
     temp_factory = AirCraftFactory(mountain_zone)
     p1.addFactory(temp_factory)
     p1.produce(temp_factory,temp_factory.UAV)
+    #p1.produce(temp_factory,temp_factory.UAV)
+    #p1.produce(temp_factory, temp_factory.Bomber)
     print(p1.inventory)
-
+    print(p1.resources)
+    print(p1.factories)
 
 if __name__ == "__main__":
     main()

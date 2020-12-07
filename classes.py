@@ -31,24 +31,27 @@ class Player:
         self.posx = posx
         self.posy = posy
         self.resources = starting_resources
+        self.is_working = False
         self.factories = list()
         self.inventory = {"UAV": 0,
                           "Bomber": 0}
 
-    def addFactory(self, input_factory):
+    def buildFactory(self, input_factory):
+        self.is_working = True
         self.factories.append(input_factory)
         input_factory_cost = multiplyLists(input_factory.base_cost, input_factory.zone.cost_ratio)
-        self.resources = subtractLists(self.resources, input_factory_cost)
+        self.resources = subtractDicts(self.resources, input_factory_cost)
+        self.is_working = False
 
     def addToInventory(self, product):
         self.inventory[product.name] += 1
 
     def produce(self, factory, product):
-        factory.is_working = True
-        self.resources = subtractLists(self.resources, product.materials)
+        self.is_working = True
+        self.resources = subtractDicts(self.resources, product.materials)
         time.sleep(product.production_time)
         self.addToInventory(product)
-        factory.is_working = False
+        self.is_working = False
 
 def main():
     print("Hello World!")
