@@ -1,3 +1,4 @@
+import time
 from miscellaneousFunctions import *
 
 
@@ -7,6 +8,7 @@ class Factory:
         self.base_cost = base_cost
         self.zone = None
         self.name = name
+        self.is_working = False
 
 
 class Zone:
@@ -16,6 +18,13 @@ class Zone:
         self.name = name
 
 
+class Product:
+    def __init__(self, name, materials, production_time):
+        self.name = name
+        self.materials = materials
+        self.production_time = production_time
+
+
 class Player:
     def __init__(self, player_id, posx, posy, starting_resources):
         self.player_id = player_id
@@ -23,12 +32,23 @@ class Player:
         self.posy = posy
         self.resources = starting_resources
         self.factories = list()
+        self.inventory = {"UAV": 0,
+                          "Bomber": 0}
 
     def addFactory(self, input_factory):
         self.factories.append(input_factory)
         input_factory_cost = multiplyLists(input_factory.base_cost, input_factory.zone.cost_ratio)
         self.resources = subtractLists(self.resources, input_factory_cost)
 
+    def addToInventory(self, product):
+        self.inventory[product.name] += 1
+
+    def produce(self, factory, product):
+        factory.is_working = True
+        self.resources = subtractLists(self.resources, product.materials)
+        time.sleep(product.production_time)
+        self.addToInventory(product)
+        factory.is_working = False
 
 def main():
     print("Hello World!")
