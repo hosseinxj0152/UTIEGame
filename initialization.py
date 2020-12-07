@@ -31,9 +31,7 @@ def main():
     starting_resources = {"Fuel": 1000, "Money": 1000, "Iron": 1000}
     p1 = Player("810977144", 0, 0, starting_resources)
     temp_factory = AirCraftFactory(plain_zone)
-    p1.addFactory(temp_factory)
-    temp_factory = AirCraftFactory(mountain_zone)
-    p1.addFactory(temp_factory)
+    p1.buildFactory(temp_factory)
     p1.produce(temp_factory,temp_factory.UAV)
     #p1.produce(temp_factory,temp_factory.UAV)
     #p1.produce(temp_factory, temp_factory.Bomber)
